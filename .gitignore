@@ -3,6 +3,14 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+
+#Credentials:
+pswdconf.py
+
+#Manual Temp Files
+*.bkp
+*.log
+
 # C extensions
 *.so
 
@@ -67,6 +75,9 @@ instance/
 
 # Scrapy stuff:
 .scrapy
+01_WebFocusedCrawl_AF/adafruit-consumers/
+01_WebFocusedCrawl_AF/adafruit-product/
+01_WebFocusedCrawl_AF/main-companies/
 
 # Sphinx documentation
 docs/_build/
