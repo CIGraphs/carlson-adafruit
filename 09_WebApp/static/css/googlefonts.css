@@ -1,0 +1,70 @@
+/* 
+The intent is for this file to work offline (on a plane, in the rain, on a train, in antartica)
+To do that and make sure the system has the right fonts we startically store the fonts and provide this CSS to get the fonts
+
+Thank you to this project for helping to do that!!
+https://google-webfonts-helper.herokuapp.com/ 
+*/
+
+ 
+
+/* Monocromic like font for detailed transactions ledger */
+/* miriam-libre-regular - latin */
+@font-face {
+  font-family: 'Miriam Libre';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/miriam-libre-v7-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../fonts/miriam-libre-v7-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/miriam-libre-v7-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/miriam-libre-v7-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/miriam-libre-v7-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/miriam-libre-v7-latin-regular.svg#MiriamLibre') format('svg'); /* Legacy iOS */
+}
+
+/* Header Font */
+/* merriweather-sans-regular - latin */
+@font-face {
+  font-family: 'Merriweather Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/merriweather-sans-v14-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../fonts/merriweather-sans-v14-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/merriweather-sans-v14-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/merriweather-sans-v14-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/merriweather-sans-v14-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/merriweather-sans-v14-latin-regular.svg#MerriweatherSans') format('svg'); /* Legacy iOS */
+}
+
+/* Header Weight */
+/* merriweather-sans-800 - latin */
+@font-face {
+  font-family: 'Merriweather Sans';
+  font-style: normal;
+  font-weight: 800;
+  src: url('../fonts/merriweather-sans-v14-latin-800.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../fonts/merriweather-sans-v14-latin-800.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/merriweather-sans-v14-latin-800.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/merriweather-sans-v14-latin-800.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/merriweather-sans-v14-latin-800.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/merriweather-sans-v14-latin-800.svg#MerriweatherSans') format('svg'); /* Legacy iOS */
+}
+
+/*CLEAN font */
+
+/* noto-sans-regular - latin */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/noto-sans-v12-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../fonts/noto-sans-v12-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/noto-sans-v12-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/noto-sans-v12-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/noto-sans-v12-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/noto-sans-v12-latin-regular.svg#NotoSans') format('svg'); /* Legacy iOS */
+}

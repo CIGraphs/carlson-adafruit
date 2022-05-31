@@ -1,0 +1,734 @@
+ 
+/* Color Swatches */
+
+/*
+off white Background Color:  
+#E3E3E3
+Highlight color
+#F8ED92
+Main Purple Buttons Headings Deepbackgrounds
+#8B519F
+Accent Color Orange
+#F69120
+MainTextColor Blue
+#395594
+
+ButtonColors:
+#8b509f   Primary
+#395594   Info
+#5f9368   Success
+#dc8230   Warning (orange)
+#f44336   Danger
+
+*/
+
+/*-----------------------------
+ * Global Body
+ ------------------------------*/
+
+
+/* Set general font 
+   remove buffers magins/padding 
+   set background light gray 
+*/
+body {
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  color: #395594;
+  background-color: #E3E3E3;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* Basic Font setups*/
+h1 {
+  margin-top: 5px;
+  margin-left: 0px; 
+  margin-right: 0px;
+  margin-bottom: 0px;
+  padding: 0px 0px 0px 0px;
+  font-family: 'Miriam Libre';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 2rem;
+}
+
+table {
+ margin-top: 1em;
+ margin-bottom: 1em;
+}
+th {
+ background-color: #395594;
+ color: white;
+}
+
+
+table, th, td {
+    border: 2px solid #888;
+    border-collapse: collapse;
+    text-align: left;
+    padding: .2em;
+}
+
+tr:hover {
+    background-color: MediumPurple;
+    color: white;
+}
+
+
+.fontright {
+  text-align: right;
+}
+
+.fontcenter {
+  text-align: center;
+}
+
+.fontleft {
+  text-align: left;
+}
+
+
+/*-----------------------------
+ * Containers
+ ------------------------------*/
+.container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.datacontainer {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Bootstrap Style Width BreakPoints */
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+  .datacontainer {
+    max-width: 560px;   
+  }
+
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+  .datacontainer {
+    max-width: 740px;   
+  }
+
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+  .datacontainer {
+    max-width: 2048px;   
+  }
+}
+
+.header-container {
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border-radius: 0rem 0rem 1rem 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.content-container {
+  /* Should have looked into Grid to do the skicky header and footer
+  https://css-tricks.com/fun-viewport-units/ */
+  
+  /*background-color:rgba(0, 0, 255, .3);
+  position: sticky;
+  bottom: 0;
+  right: 0;
+  left: 0;*/
+  width: 100%;
+
+  /* Stupid hack when the contents is less than the full view port extend it to 75% of the view port */
+  /* Should have set this up with flexbox all around probably */
+  min-height: 75vh;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+
+
+/*-----------------------------
+ * Contents
+ ------------------------------*/
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+}
+.item {
+  display: block;
+  width: 100%;
+  margin: 0px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
+  
+}
+
+.rightbtn {
+  display: block;
+  width: 25%;
+  margin: 0px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
+  
+}
+
+.itemtitle {
+  display: block;
+  width: 100%;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+}
+.itemsmall {
+  display: block;
+  width: 15%;
+  margin: 0px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
+  
+}
+
+.item p {
+  text-align: center;
+  font-size: 1.3rem;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  color: #395594;
+}
+
+.crow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  border-bottom: 2px solid;
+  border-color: #8B519F;
+  margin-left: .5em;
+  margin-right: .5em;
+}
+
+/* Same as crow, but will not have a hover effect */
+.crowNOhover {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  border-bottom: 2px solid;
+  border-color: #8B519F;
+  margin-left: .5em;
+  margin-right: .5em;
+}
+
+.crow:hover {
+  border-bottom: 2px dashed;
+  border-radius: 1em;
+  border-color: #8B519F;
+}
+
+.cmuteheader {
+  padding-left: .5em;
+  padding-right: .5em;
+  padding-top: .8em;
+  padding-bottom: .2em;
+  width: 100%;
+  background-color: #E3E3E3;
+  font-family: 'Miriam Libre';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: #777777;
+}
+
+.clabel {
+  padding-left: 1em;
+  padding-top: .5em;
+  padding-bottom: .5em;
+  width: 66%;
+  background-color: #ebebeb;
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: #395594;
+}
+
+.clabel a:link, 
+.clabel a:visited, 
+.clabel a:hover, 
+.clabel a:active,
+.ctransaction a:link, 
+.ctransaction a:visited, 
+.ctransaction a:hover, 
+.ctransaction a:active{
+  color: #395594;
+  text-decoration: underline;
+}
+
+.ctransaction {
+  padding-right: .8em;
+  padding-top: .5em;
+  padding-bottom: .5em; 
+  width: 34%;
+  text-align: right;
+  background-color: #ebebeb;
+  font-family: 'Miriam Libre';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.3rem;
+  color: #395594;
+}
+
+.cform {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-left: .8em;
+  padding-right: .8em;
+  padding-top: .5em;
+  padding-bottom: .5em; 
+  margin-top: .5em;
+  margin-bottom: .8em;
+  width: 75%;
+  text-align: center;
+  background-color: #ffff;
+  border-radius: 10px;
+}
+
+
+
+
+/*-----------------------------
+ * Buttons
+ ------------------------------*/
+.stylebtn {
+    background: #f3f0f1;
+    position: relative;
+    background: #f3f0f1;
+    margin-bottom: 25px;
+    border-radius: 32px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    /*box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8),
+        6px 6px 10px rgba(0, 0, 0, 0.2);*/
+      color: #6f6cde;
+    width: 100%;
+}
+
+
+
+.btn {
+  display: block;
+  padding: .1rem .1rem;
+  
+  margin-top: .5rem;
+  
+  color: #fff;
+  font-family: 'Merriweather Sans';
+  font-style: normal;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  background-color: transparent;
+  
+  border-color: #F8ED92;
+  border: 3px solid transparent;
+  
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+  
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  width: 100%;
+  
+}
+
+
+
+.btn-main {
+  font-size: 1.5rem;
+  font-weight: 800;
+  background-color: #8B519F;
+  border-radius: 1rem;
+}
+.btn-payday {
+  font-size: 1.1rem;
+  font-weight: 800;
+  background-color: #5f9368;
+  border-radius: .7rem;
+}
+
+
+.btn-main:hover {
+  color: #fff;
+  background-color: #2d4375;
+  border-color: #F8ED92;
+}
+
+
+.btn-main:focus, .btn-payday:focus, .btnsubmit:focus, .btncancel:focus{
+  color: #fff;
+  background-color: #598661;
+  border-color: #8B519F;
+  /*box-shadow: 0 0 0 0.25rem rgba(49, 132, 253, 0.5);*/
+  outline: 0;
+}
+
+
+.
+
+/*
+-----------------------------------------------------------------------------
+Form Elements
+-----------------------------------------------------------------------------
+*/
+
+.btnform {
+
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin-left: 12px;
+  margin-right: 12px;
+  
+  color: #fff;
+  font-family: 'Merriweather Sans';
+  font-style: normal;
+  font-size: 1.1rem;
+  font-weight: 800;
+  
+  background-color: #5f9368;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  background-color: transparent;
+  
+  border-color: #F8ED92;
+  border: 3px solid transparent;
+  
+  /*box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);*/
+  
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  /*background-color: #395594;*/
+  border-radius: 2px;
+}
+
+.btnsubmit {
+  background-color: #5f9368;
+}
+
+.btncancel {
+  background-color: #777777;
+}
+
+.btncancel:hover {
+  color: #fff;
+  background-color: #4d4d4d;
+  border-color: #F8ED92;
+}
+.btnsubmit:hover {
+  color: #fff;
+  background-color: #598661;
+  border-color: #F8ED92;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+.inputboxes{
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #bbb;
+  background-color: #eee;
+  border-radius: 8px;
+  box-sizing: border-box;
+  resize: vertical;
+
+  font-family: 'Miriam Libre';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: #395594;
+}
+
+.money {
+  display: flex;
+
+}
+
+.moneyinput {
+  flex: 1;
+
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 4px;
+  padding-right: 12px;
+
+  border-top: 2px; 
+  border-bottom: 2px;
+  border-right: 2px;
+  border-left: 0px;
+  border-style: solid;
+  border-color: #ccc;
+
+  margin-left: 0px;
+  
+  background-color: #fff;
+  border-radius: 0px 4px 4px 0px;
+  box-sizing: border-box;
+  resize: vertical;
+
+  font-family: 'Miriam Libre';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: #395594;
+
+}
+
+.currency {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 12px;
+  padding-right: 4px;
+
+  margin-right: 0px;
+
+  border-top: 2px; 
+  border-bottom: 2px;
+  border-left: 2px;
+  border-right: 0px;
+  border-style: solid;
+  border-color: #ccc;
+
+  background-color: #fff; /*E3E3E3;*/
+  border-radius: 4px 0px 0px 4px; 
+  box-sizing: border-box;
+  resize: vertical;
+
+  font-family: 'Miriam Libre';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: #395594;
+}
+
+
+
+/* Progress Bar */
+.goalbar { 
+  height: 10px;
+  position: relative;
+  background: rgb(219, 219, 219);
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: inset 0 -2px 2px rgba(15, 15, 15, 0.3);
+}
+.goalbar > span {
+  display: block;
+  height: 100%;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-color: rgb(43,194,83);
+  background-image: linear-gradient(
+    center bottom,
+    rgb(43,194,83) 37%,
+    rgb(135, 255, 135) 69%
+  );
+  box-shadow: 
+    inset 0 2px 9px  rgba(255,255,255,0.3),
+    inset 0 -2px 6px rgba(0,0,0,0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+
+
+
+
+/*
+----------------------------------------------------------------------------
+Nav Dropdowns
+
+https://css-tricks.com/almanac/properties/t/top-right-bottom-left/
+https://css-tricks.com/almanac/properties/p/position/
+https://www.w3schools.com/howto/howto_js_dropdown.asp
+https://code.tutsplus.com/tutorials/how-to-build-a-kick-butt-css3-mega-drop-down-menu--net-15129
+------------------------------------------------------------------------------
+*/
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  box-sizing: border-box;
+  display: none;
+  /* Stupid trick use the relative position of the .dropdown to get the absolute Height of this element */
+  position: absolute;
+  /* This is the stupid trick part override the left to start at the very edge not get the relative left */
+  left: 3%;
+  width: 94%;
+  border-color: #8B519F;
+  color: #8B519F;
+  border: 5px solid;
+  background-color: #fff;
+  text-align: center;
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+  z-index: 1;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+}
+
+/* Links inside the dropdown */
+.dropdown-content ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.dropdown-content ul li a {
+  font-family: 'Merriweather Sans';
+  font-style: normal;
+  line-height: 1.5;
+  font-size: 1.1rem;
+  font-weight: 400;
+  text-decoration: none;
+
+  color: #395594;
+  padding: 12px 16px;
+  border-bottom: 1px solid;
+  border-color: #8B519F;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content ul li a:hover {
+  background-color: #8B519F;;
+  color: #fff;
+  /*border-radius: 1em;*/
+}
+
+
+
+/*
+----------------------------------------------------------------------------
+Nav Basic Yes No Prompt
+------------------------------------------------------------------------------
+*/
+.popup-container {
+  display: none;
+  
+  place-items: center;
+  box-sizing: border-box;
+  position: fixed;
+  height: 160px;
+  width: 70%;
+  max-width: 672px;
+  border-color: #8B519F;
+  color: #8B519F;
+  border: 5px solid;
+  background-color: #fff;
+  text-align: center;
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+  z-index: 5;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+  margin: auto;
+
+  border-radius: 1em;
+}
+
+.popup-content{
+  display: grid;
+  place-items: center;
+}
+
+.popup-obscure {
+  display:none;
+
+  opacity: 0.5;
+  background: #395594;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  top: 0;
+  left: 0;
+  position: fixed;
+}
+
+/*
+.popup-content ul li:last-child {
+  float: right;
+}
+*/
+
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;} 
+
+.showcenter {display:grid;}
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.hide {display:none;} 
+
+
+@media screen and (max-width: 400px) {
+  .clabel {
+    width: 100%;
+    padding-bottom: 0;
+
+  }
+  .ctransaction {
+    width: 100%;
+    padding-top: 0;
+  }
+  .crow {
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,18 @@
+Find the distributors who buy and distribute producst from Adafruit that AF sells for more than $50
+Be able to quickly select the buying company Region and Country
+
+
+SELECT * FROM cypher('adafruit', 
+                     $$ MATCH (disrib:Company)-[r:Buys]->(prod:Product)<-[s:Sells]-(af:Company) 
+                     WHERE af.entity='Adafruit' 
+                     AND disrib.region ='Europe'
+                     AND s.USDprice > 50 
+                     
+                     RETURN DISTINCT 
+                     disrib.entity, 
+                     disrib.region, 
+                     disrib.country, 
+                     prod.entity, 
+                     s.USDprice $$
+                    ) as (BuyingComp agtype, CompRegion agtype, CompCountry agtype, Product agtype, BasePrice agtype);
+ 

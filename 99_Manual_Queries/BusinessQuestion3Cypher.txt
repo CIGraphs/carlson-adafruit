@@ -1,0 +1,27 @@
+
+/* Top 15 Distributors who purchase the least number of unique products? AND the most */
+
+SELECT * FROM cypher('adafruit', 
+                     $$ MATCH (disrib:Company)-[r:Buys]->(prod:Product)
+                                       
+                     RETURN  
+                     disrib.entity, 
+                     disrib.region, 
+                     disrib.country, 
+                     count(prod) AS UniqProdDistributed
+                     ORDER BY count(prod) ASC
+                     LIMIT 15
+                     UNION
+                     MATCH (disrib:Company)-[r:Buys]->(prod:Product)
+                                       
+                     RETURN  
+                     disrib.entity, 
+                     disrib.region, 
+                     disrib.country, 
+                     count(prod) AS UniqProdDistributed
+                     ORDER BY count(prod) DESC
+                     LIMIT 15
+
+                    $$
+                    ) as (BuyingComp agtype, CompRegion agtype, CompCountry agtype, UniqProdDistributed agtype);
+                    

@@ -1,0 +1,37 @@
+.
+├── 01_WebFocusedCrawl_AF
+│   ├── afconsumer.jl
+│   ├── affiles.jl
+│   ├── main-companiesitems.jl
+│   ├── run-af-consumers-spider.py
+│   ├── run-af-products-spider.py
+│   ├── run-companies-desc-spider.py
+├── 02_Create_PostGreSQL_AGE
+│   ├── AFproductsCleanup.py
+│   ├── AGE_ETL_PriceOnly.py
+│   ├── AGE_ETL.py
+│   ├── cleanAFproducts.jl
+│   ├── cleanAFproducts.json
+│   ├── pswdconf.py
+│   └── __pycache__
+│       ├── AGE_ETL.cpython-39.pyc
+│       └── pswdconf.cpython-39.pyc
+├── 99_Manual_Queries
+│   ├── BusinessQuestion1Cypher.txt
+│   ├── BusinessQuestion2Cypher.txt
+│   ├── BusinessQuestion3Cypher.txt
+│   ├── queries of interest.txt
+│   ├── Question1ResultEUROPE.csv
+│   ├── Question2ResultEUROPE.csv
+│   └── Question3Result.csv
+├── BasicFileTree.txt
+├── InitialKGschema.drawio
+├── InitialKGschema.drawio.png
+├── KGschemaV2.drawio
+├── KGschemaV2.drawio.png
+├── LICENSE
+├── ManualStarterURLS.xlsx
+├── pgadmin.2022-05-12.log
+└── README.md
+
+11 directories, 4634 files

@@ -1,0 +1,17 @@
+
+What are the current distributors who purchase our products and also purchase complementary products to those? 
+We wish to up sell other distributors who are not currently carrying complementary products.
+
+ SELECT * FROM cypher('adafruit', 
+                     $$ MATCH (disrib:Company)-[r:Buys]->(prod:Product)-[c:Is_Complement_To]->(cprod:Product)<-[n:Buys]-(disrib)
+                     WHERE disrib.region ='Europe'
+                     
+                     
+                     RETURN DISTINCT 
+                     disrib.entity, 
+                     disrib.region, 
+                     disrib.country, 
+                     prod.entity, 
+                     cprod.entity
+                    $$
+                    ) as (BuyingComp agtype, CompRegion agtype, CompCountry agtype, Product agtype, ComplementProd agtype);

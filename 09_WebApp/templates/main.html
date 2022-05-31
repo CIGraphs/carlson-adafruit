@@ -1,0 +1,108 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>{{ title }}</title>
+
+    <!-- Global CSS -->
+    
+    
+    <!-- When running the flask app this will be correct -->
+    <link href="/static/css/main.css" rel="stylesheet">
+    <link href="/static/css/googlefonts.css" rel="stylesheet">    
+    
+ </head>
+ <body>
+ 
+    <div class="header-container container" id="idheadercontainer">
+         <!-- New Help and Title -->
+        <div class="row">
+            <div class="itemtitle">
+                <h1 class="fontcenter">{{ title }}</h1>
+            </div>
+        </div>
+        <!-- Progress Bar  NOT IMPLEMENTED remove the styple="display: none;" to show up-->
+        <div class="row" style="display: none;">
+            <div class="itemsmall fontright" id="perprogressnum">
+                Progress:
+            </div>
+            <div class="item">
+                <div class="goalbar">
+                    <span style="width: {{ progress_bar_pct }}" id="perprogresswidth"></span>
+                </div>
+            </div>
+            <div class="itemsmall fontleft" id="perprogressdollar">
+                {{ step_running_name }}
+            </div>
+        </div>
+        
+        
+         <!-- Potential Actions -->
+        <div id="idActionBtns">
+            <form action="#" method="post">
+            <div class="row">
+                <div class="cform">
+                    <input class="inputboxes" type="text" id="idwebquestion" name="nmwebquestion" placeholder="Ask the 8 Ball Your Query...">
+                </div>
+                <div class="rightbtn">
+                    <button class="btn btn-main btn-wsub" type="submit">&prcue;Magic&sccue;</button>
+                </div>
+            </div>
+            </form>
+        </div>
+        <!-- Dynamic Upper Menu Contents-->
+        <div id="DynUpperMenu" class="hide">
+            
+        </div>
+    </div>
+
+
+
+    <!-- ************* MAIN DYNAMIC CONTENT ******************* -->
+    <div class="content-container datacontainer" id="idcontentcontainer">
+        <div class="main-content" id="idmaincontent">
+            {% if res_fields %}
+            <div class="crowNOhover">
+                <div class="cform money">
+                    {{ humanReadableQueryVerify }}
+                </div>
+            </div>
+            <div class="crowNOhover">
+            
+                
+                <table>
+                <tr>
+                    {% for field in res_fields %}
+                    <th>{{ field }}</th>
+                    {% endfor %}
+                </tr>
+                {% for dbrowList in res_data %}
+                <tr>
+                    {% for item in dbrowList %}
+                    {% if item is string %}
+                        {% if item[:7] == "http://" or item[:8] == "https://" %}
+                        <td><a href="{{ item }}">Web Link</a></td>
+                        {% else %}
+                        <td>{{ item }}</td>
+                        {% endif %}
+                    {% else %}
+                        <td>{{ item }}</td>
+                    {% endif %}
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+                </table> 
+            {% endif %}
+            </div>
+        </div>
+
+        
+
+    </div>
+
+    
+
+
+ </body>
+ </html>
