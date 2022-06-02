@@ -73,6 +73,12 @@ table, th, td {
     padding: .2em;
 }
 
+td>b {
+  font-size:large;
+  font-family: monospace;
+  color: #23355f;
+}
+
 tr:hover {
     background-color: MediumPurple;
     color: white;

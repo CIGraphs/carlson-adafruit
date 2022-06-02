@@ -12,8 +12,8 @@ import pandas as pd
 app = Flask(__name__)
 
 
-#connectingTo = 'local'
-connectingTo = 'remote'
+connectingTo = 'local'
+#connectingTo = 'remote'
 
 if connectingTo == 'local':
     ip = pswdconf.localIP
@@ -73,15 +73,7 @@ def home():
         #Link to the main.html pages in the templates folder for rendering in the user's web browser
         
         
-        return render_template(
-            "main.html", 
-            title = pageTitle, 
-            humanReadableQueryVerify = queryverify,
-            res_fields = fields,
-            res_data = data,
-            #Not used, but still in template
-            progress_bar_pct = 0, step_running_name = "not used"
-            )
+        return render_template("main.html", title = pageTitle, humanReadableQueryVerify = queryverify, res_fields = fields, res_data = data, progress_bar_pct = 0, step_running_name = "not used")
       
       
 #This is the main code to determine the users intent To check if the webpage is working pass TEST to this
@@ -121,6 +113,21 @@ def extractIntent(UserInput):
         
         return SQL_Results
 
+
+    #DEFAULT TO AN ALL MATCH full text search within Postgres Document DB.
+    else: 
+        InputWordList = UserInput.split(" ")
+        s = " & "
+        SearchParmaters = s.join(InputWordList)
+
+        InitSQL_Results = runTextSearch(SearchParmaters)
+
+        SQL_Results = runTextMatchSummary(InitSQL_Results, SearchParmaters)
+
+        SQL_Results['humanReadableQueryVerify'] = f"Searching Documens that contain {SearchParmaters}"
+
+        return SQL_Results
+
 def runSQL(qry):
     conn = psycopg2.connect(host=ip, database=db, user=user, password=pwd)
     cur = conn.cursor()
@@ -136,6 +143,11 @@ def runSQL(qry):
     queryResults = {'res_fields': fields,
                     'res_data': data_rows
                     }
+
+    cur.close()
+    if conn is not None:
+        conn.close()
+
     return queryResults
  
 def runCypher(qry):
@@ -159,8 +171,79 @@ def runCypher(qry):
     queryResults = {'res_fields': fields,
                     'res_data': data_rows
                     }
-    return queryResults
+
+
+    cur.close()
+    if conn is not None:
+        conn.close()
     
+    return queryResults
+
+def runTextSearch(input):
+
+    qry = f"""
+    SELECT id, ts_rank_cd(textsearchable_index_col, query) AS rank
+        FROM adafruit_rel.adafruit_docs, to_tsquery('{input}') query
+        WHERE query @@ textsearchable_index_col
+        ORDER BY rank DESC
+    LIMIT 25;
+    """
+    
+    conn = psycopg2.connect(host=ip, database=db, user=user, password=pwd)
+    cur = conn.cursor()
+
+    cur.execute(qry)
+    data_ids = []
+    for row in cur:
+        data_ids.append(row[0])
+
+    cur.close()
+    if conn is not None:
+        conn.close()
+
+    return data_ids
+
+def runTextMatchSummary(ID_list, SearchParamater):
+    print(ID_list)
+    str_ID_list =  [str(i) for i in ID_list]
+    idlst = ","
+    idlst = idlst.join(str_ID_list)
+    print(idlst)
+    #idlst = idlst[2:]
+
+    qry = f"""
+    SELECT DocType, DocTitle, DocLink, 
+    ts_headline('english', text, query, 'MaxFragments=10, MaxWords=7, MinWords=3')
+   from (select *, to_tsquery('english', '{SearchParamater}') query 
+         from adafruit_rel.adafruit_docs where id in({idlst})
+         ) a
+  ;
+    """
+    print("----------")
+    print(qry)
+    print("----------")
+
+
+    conn = psycopg2.connect(host=ip, database=db, user=user, password=pwd)
+    cur = conn.cursor()
+
+    cur.execute(qry)
+
+    data_rows = []
+    #Return all the column names
+    fields = [desc[0] for desc in cur.description]
+    for row in cur:
+        data_rows.append(row)
+    queryResults = {'res_fields': fields,
+                    'res_data': data_rows
+                    }
+
+    cur.close()
+    if conn is not None:
+        conn.close()
+
+    return queryResults
+
 if __name__ == "__main__":
     #adding the host 0.0.0.0 any computer on the local network should be albe to open the webpage
     app.run(host='0.0.0.0', debug=True, port = 8080)

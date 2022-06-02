@@ -84,10 +84,10 @@
                         {% if item[:7] == "http://" or item[:8] == "https://" %}
                         <td><a href="{{ item }}">Web Link</a></td>
                         {% else %}
-                        <td>{{ item }}</td>
+                        <td>{{ item|safe }}</td>
                         {% endif %}
                     {% else %}
-                        <td>{{ item }}</td>
+                        <td>{{ item|safe }}</td>
                     {% endif %}
                     {% endfor %}
                 </tr>
