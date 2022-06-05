@@ -1,0 +1,1 @@
+ConsumerTypeSet = [, "distributor", "hackerspace"]

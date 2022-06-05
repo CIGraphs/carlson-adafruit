@@ -5,6 +5,8 @@ import csv
 import psycopg2
 import pswdconf
 
+import nlpmeaning
+
 import re
 
 import pandas as pd
@@ -94,7 +96,7 @@ def extractIntent(UserInput):
             }
         return TestDict
     
-    if UserInput == "TEST SQL":
+    elif UserInput == "TEST SQL":
         SQL_Results = runSQL("""
             SELECT CURRENT_DATE, random() as Rand_num, table_schema, table_name 
             FROM information_schema.tables 
@@ -105,7 +107,7 @@ def extractIntent(UserInput):
         
         return SQL_Results
 
-    if UserInput == "TEST OpenCypher":
+    elif UserInput == "TEST OpenCypher":
         SQL_Results = runCypher("""
             SELECT * FROM cypher('adafruit', $$ MATCH (a) RETURN a.entity, label(a), id(a) $$) as (NodeName agtype, NodeLabel agtype, NodeID agtype);
             """)
@@ -113,20 +115,29 @@ def extractIntent(UserInput):
         
         return SQL_Results
 
+    else:
+        KGqry = nlpmeaning.MeaningParser(UserInput)
 
-    #DEFAULT TO AN ALL MATCH full text search within Postgres Document DB.
-    else: 
-        InputWordList = UserInput.split(" ")
-        s = " & "
-        SearchParmaters = s.join(InputWordList)
+        print(KGqry)
 
-        InitSQL_Results = runTextSearch(SearchParmaters)
+        if KGqry == "Can't Parse Meaning":
+    
+            InputWordList = UserInput.split(" ")
+            s = " & "
+            SearchParmaters = s.join(InputWordList)
 
-        SQL_Results = runTextMatchSummary(InitSQL_Results, SearchParmaters)
+            InitSQL_Results = runTextSearch(SearchParmaters)
+            SQL_Results = runTextMatchSummary(InitSQL_Results, SearchParmaters)
+            SQL_Results['humanReadableQueryVerify'] = f"Searching Documens that contain {SearchParmaters}"
 
-        SQL_Results['humanReadableQueryVerify'] = f"Searching Documens that contain {SearchParmaters}"
+            return SQL_Results
 
-        return SQL_Results
+        else:
+            print(KGqry)
+            SQL_Results = runCypher(KGqry)
+            SQL_Results['humanReadableQueryVerify'] = UserInput + ' ' + KGqry
+
+            return SQL_Results
 
 def runSQL(qry):
     conn = psycopg2.connect(host=ip, database=db, user=user, password=pwd)
@@ -161,6 +172,7 @@ def runCypher(qry):
     cur.execute("SET search_path = ag_catalog, '$user', public;")
 
     #Test the connection and cursor by selecting the current_date from the postgreSQL server   
+    print("QRY " + qry)
     cur.execute(qry)
 
     data_rows = []
